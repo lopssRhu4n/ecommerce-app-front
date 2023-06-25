@@ -6,7 +6,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="w-screen h-screen flex flex-col items-center">
+  <div class="w-screen flex flex-col items-center bg-gray-800">
     <MainHeader />
     <RouterView />
   </div>

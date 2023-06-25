@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-const username = ref<string>('');
+import { reactive, ref, type Ref } from 'vue';
+import type { registerData } from '@/interfaces/RegisterDataInterface';
+
+const registerData = ref({});
 </script>
 
 <template>
   <form class="w-[600px] flex justify-center items-center h-[400px] bg-white rounded-md shadow-md">
-    {{ username }}
-    <input type="text" class="border-black w-10 h-6 bg-blue" :model="username" />
+    <input type="email" placeholder="Email" />
+    <input type="password" placeholder="Password" />
+    <input type="text" placeholder="Name" />
+    <input type="date" placeholder="Birthdate" />
+    <input type="text" placeholder="CPF" />
   </form>
 </template>
 
