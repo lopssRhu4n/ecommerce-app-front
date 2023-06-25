@@ -3,9 +3,12 @@ import { reactive, ref } from 'vue';
 
 const number = ref<number>(0);
 
-const increment = () => { number.value++ };
-const decrement = () => { number.value-- };
-
+const increment = () => {
+  number.value++;
+};
+const decrement = () => {
+  number.value--;
+};
 </script>
 
 <template>
@@ -18,4 +21,3 @@ const decrement = () => { number.value-- };
 <style>
 /* Component CSS */
 </style>
-

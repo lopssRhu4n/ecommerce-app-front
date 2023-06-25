@@ -5,7 +5,7 @@ import { RouterView } from 'vue-router';
 </script>
 
 <template>
-<div class="w-screen h-screen bg-gray-800 flex justify-center items-center">
+  <div class="w-screen h-screen bg-gray-800 flex justify-center items-center">
     <RouterView />
   </div>
 </template>
@@ -13,4 +13,3 @@ import { RouterView } from 'vue-router';
 <style>
 /* Component CSS */
 </style>
-

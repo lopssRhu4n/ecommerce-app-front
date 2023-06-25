@@ -1,7 +1,14 @@
 export const routes = [
   {
     path: '/',
-    component: () => import('@/pages/HomePage.vue')
+    component: () => import('@/layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/pages/HomePage.vue'),
+        name: 'Homepage',
+      },
+    ],
   },
   {
     path: '/auth/',
@@ -10,8 +17,8 @@ export const routes = [
       {
         path: 'register',
         component: () => import('@/pages/Auth/RegisterPage.vue'),
-        name: 'Register'
-      }
-    ]
-  }
+        name: 'Register',
+      },
+    ],
+  },
 ];

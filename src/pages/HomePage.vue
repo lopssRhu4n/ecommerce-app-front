@@ -4,10 +4,9 @@
 </script>
 
 <template>
-<h1>HomePage!!</h1>
+  <h1>HomePage!!</h1>
 </template>
 
 <style>
 /* Component CSS */
 </style>
-
