@@ -1,10 +1,10 @@
-import Client from '@/http-clients/AxiosClient';
-import type { registerData } from '@/interfaces/RegisterDataInterface';
+import Client from '@/http/clients/AxiosClient';
+import type { IRegisterData } from '@/interfaces/RegisterDataInterface';
 
-const registerResource = '/register';
+const registerResource = '/client/register';
 
 export default {
-  register(payload: registerData) {
+  register(payload: IRegisterData) {
     return Client.post(registerResource, payload);
   },
 };

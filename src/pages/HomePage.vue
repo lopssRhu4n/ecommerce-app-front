@@ -1,6 +1,22 @@
 <script setup lang="ts">
+import { useProductStore } from '@/stores/ProductStore';
+import RepositoriesFactory from '@/http/RepositoriesFactory';
+import { onMounted } from 'vue';
 // import { reactive } from 'vue';
 // Component Script
+
+const productStore = useProductStore();
+const ProductRepo = RepositoriesFactory.get('product');
+
+const fetchProducts = async () => {
+  const { data } = await ProductRepo.getProducts();
+  productStore.data = data;
+};
+
+onMounted(() => {
+  fetchProducts();
+})
+
 </script>
 
 <template>

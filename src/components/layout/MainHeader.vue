@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { useClientStore } from '@/stores/ClientStore';
+
+const store = useClientStore();
 // Component Script
 </script>
 
@@ -13,9 +15,20 @@ import { reactive } from 'vue';
       <span>|</span>
       <p>Content</p>
     </div>
-    <div class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
-      <button class="hover:bg-white hover:text-gray-800 transition-all">Register</button>
+    <div
+      v-if="!store.data"
+      class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
+    >
+      <button class="hover:bg-white hover:text-gray-800 transition-all">
+        <button to="/auth/register">Register</button>
+      </button>
       <button class="hover:bg-white hover:text-gray-800 transition-all">Login</button>
+    </div>
+    <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
+      <button class="hover:bg-white hover:text-gray-800 transition-all">Cart</button>
+      <button class="hover:bg-white hover:text-gray-800 transition-all">
+        {{ store.data.name }}
+      </button>
     </div>
   </header>
 </template>

@@ -1,4 +1,4 @@
-export interface registerData {
+export interface IRegisterData {
   name: string;
   email: string;
   cpf: string;
