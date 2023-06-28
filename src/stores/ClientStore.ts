@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import type { IRegisterData } from '@/interfaces/RegisterDataInterface';
+import type { IClient } from '@/interfaces/ClientInterface';
 
 export const useClientStore = defineStore('client', () => {
-  const data = ref<IRegisterData>();
+  const data = ref<IClient>();
   const getData = computed(() => data.value);
 
   return { data, getData };

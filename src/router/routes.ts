@@ -19,6 +19,11 @@ export const routes = [
         component: () => import('@/pages/Auth/RegisterPage.vue'),
         name: 'Register',
       },
+      {
+        path: 'login',
+        component: () => import('@/pages/Auth/LoginPage.vue'),
+        name: 'Login',
+      },
     ],
   },
 ];

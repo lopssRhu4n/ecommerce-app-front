@@ -4,12 +4,10 @@ import { useClientStore } from '@/stores/ClientStore';
 import { ref } from 'vue';
 
 const clientStore = useClientStore();
-const cartStore = useCartStore();
 
 const showCartPopUp = ref(false);
 
-const toggleCartPopUp = () => showCartPopUp.value = !showCartPopUp.value;
-
+const toggleCartPopUp = () => (showCartPopUp.value = !showCartPopUp.value);
 </script>
 
 <template>
@@ -29,16 +27,20 @@ const toggleCartPopUp = () => showCartPopUp.value = !showCartPopUp.value;
       <button class="hover:bg-white hover:text-gray-800 transition-all">
         <a href="/auth/register">Register</a>
       </button>
-      <button class="hover:bg-white hover:text-gray-800 transition-all">Login</button>
+      <button class="hover:bg-white hover:text-gray-800 transition-all">
+        <a href="/auth/login">Login</a>
+      </button>
     </div>
     <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
-      <button class="hover:bg-white hover:text-gray-800 transition-all" @click="toggleCartPopUp">Cart</button>
+      <button class="hover:bg-white hover:text-gray-800 transition-all" @click="toggleCartPopUp">
+        Cart
+      </button>
       <div class="h-50 w-50" v-if="showCartPopUp">
-          <h1>Amount: {{ cartStore.data?.amount }}</h1>
-        <h2>Shipping: {{cartStore.data?.shipping}}</h2>
-        <div v-if="cartStore.data?.products">
-          <h2>{{cartStore.data.products[0]}}</h2>
-          <h2>{{cartStore.data.products.length - 1}}</h2>
+        <h1>Amount: {{ clientStore.data?.cart.amount }}</h1>
+        <h2>Shipping: {{ clientStore.data?.cart.shipping }}</h2>
+        <div v-if="clientStore.data?.cart.products">
+          <h2>{{ clientStore.data.cart.products[0] }}</h2>
+          <h2>{{ clientStore.data.cart.products.length - 1 }}</h2>
         </div>
 
         <h2>Empty Cart</h2>

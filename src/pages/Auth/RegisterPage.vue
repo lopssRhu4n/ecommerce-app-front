@@ -3,11 +3,9 @@ import { ref } from 'vue';
 import type { IRegisterData } from '@/interfaces/Auth/RegisterDataInterface';
 import { authService } from '@/http/services/AuthService';
 import { useClientStore } from '@/stores/ClientStore';
-import { useCartStore } from '@/stores/CartStore';
 import router from '@/router';
 
 const clientStore = useClientStore();
-const cartStore = useCartStore();
 
 const register = ref<IRegisterData>({
   name: '',
@@ -31,7 +29,6 @@ const sendRegister = async () => {
   try {
     const { data } = await authService.register(register.value);
     clientStore.data = data.client;
-    cartStore.data = data.cart;
     router.push('/');
   } catch (error: any) {
     console.log(error.response.data);
