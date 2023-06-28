@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { IRegisterData } from '@/interfaces/RegisterDataInterface';
-import RepositoriesFactory from '@/http/RepositoriesFactory';
+import type { IRegisterData } from '@/interfaces/Auth/RegisterDataInterface';
+import { authService } from '@/http/services/AuthService';
 import { useClientStore } from '@/stores/ClientStore';
 import router from '@/router';
 
-const AuthRepo = RepositoriesFactory.get('auth');
 const store = useClientStore();
 
 const register = ref<IRegisterData>({
@@ -28,7 +27,7 @@ const registerInputsTypes = {
 
 const sendRegister = async () => {
   try {
-    const { data } = await AuthRepo.register(register.value);
+    const { data } = await authService.register(register.value);
     store.data = data.client;
     router.push('/');
   } catch (error: any) {

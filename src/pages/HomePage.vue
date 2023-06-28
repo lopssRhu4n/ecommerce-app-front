@@ -1,31 +1,33 @@
 <script setup lang="ts">
 import { useProductStore } from '@/stores/ProductStore';
-import RepositoriesFactory from '@/http/RepositoriesFactory';
 import { onMounted } from 'vue';
-// import { reactive } from 'vue';
-// Component Script
+import CardProductComponentVue from '@/components/CardProductComponent.vue';
+import { ProductService } from '@/http/services/ProductService';
 
 const productStore = useProductStore();
-const ProductRepo = RepositoriesFactory.get('product');
 
 const fetchProducts = async () => {
-  const { data } = await ProductRepo.getProducts();
+  const { data } = await ProductService.getProducts();
   productStore.data = data;
 };
 
 onMounted(() => {
   fetchProducts();
-})
-
+});
 </script>
 
 <template>
-  <h1>HomePage!!</h1>
   <div class="w-3/4 h-screen bg-green-300 text-4xl items-center text-center text-red-800">
     CAROUSEL IMAGES
   </div>
-  <div class="w-3/4 h-screen bg-blue-300 text-4xl items center text-center text-yellow-800">
-    MAIN PRODUCTS
+  <div class="w-3/4 bg-blue-300 grid gap-5 grid-cols-2 text-yellow-800">
+    <div
+      class="col-span-1 h-[400px] w-2/5 mx-auto flex flex-col gap-y-5 justify-center items-center text-center"
+      v-for="(product, index) in productStore.data"
+      :key="index"
+    >
+      <CardProductComponentVue :product="product" />
+    </div>
   </div>
 </template>
 

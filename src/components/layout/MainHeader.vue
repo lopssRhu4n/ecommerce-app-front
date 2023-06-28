@@ -20,7 +20,7 @@ const store = useClientStore();
       class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
     >
       <button class="hover:bg-white hover:text-gray-800 transition-all">
-        <button to="/auth/register">Register</button>
+        <a href="/auth/register">Register</a>
       </button>
       <button class="hover:bg-white hover:text-gray-800 transition-all">Login</button>
     </div>
