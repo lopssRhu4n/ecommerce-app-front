@@ -1,4 +1,4 @@
 export interface IProductToCart {
-  clientID: number;
-  productID: number;
+  cart_id: number;
+  product_id: number;
 }

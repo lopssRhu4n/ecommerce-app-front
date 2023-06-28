@@ -3,13 +3,18 @@ import { defineProps } from 'vue';
 import type { IProduct } from '@/interfaces/ProductInterface';
 import { CartService } from '@/http/services/CartService';
 import { useClientStore } from '@/stores/ClientStore';
+import router from '@/router';
 const props = defineProps<{ product: IProduct }>();
 
 const clientStore = useClientStore();
 
 const addProductToCart = () => {
-  const clientID = clientStore.data;
-  CartService.addProductToCart({ productID: 0, clientID: 0 });
+  if (clientStore.data?.cart.id) {
+    const cart_id = clientStore.data.cart.id;
+    CartService.addProductToCart({ product_id: props.product.id, cart_id: cart_id });
+  } else {
+    router.push('login');
+  }
 };
 </script>
 

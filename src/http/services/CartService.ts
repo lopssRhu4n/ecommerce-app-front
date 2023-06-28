@@ -5,6 +5,6 @@ const resource = '/cart';
 
 export const CartService = {
   addProductToCart(payload: IProductToCart) {
-    return Client.post(resource, payload);
+    return Client.post(resource + '/product', payload);
   },
 };
