@@ -1,8 +1,15 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/CartStore';
 import { useClientStore } from '@/stores/ClientStore';
+import { ref } from 'vue';
 
-const store = useClientStore();
-// Component Script
+const clientStore = useClientStore();
+const cartStore = useCartStore();
+
+const showCartPopUp = ref(false);
+
+const toggleCartPopUp = () => showCartPopUp.value = !showCartPopUp.value;
+
 </script>
 
 <template>
@@ -16,7 +23,7 @@ const store = useClientStore();
       <p>Content</p>
     </div>
     <div
-      v-if="!store.data"
+      v-if="!clientStore.data"
       class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
     >
       <button class="hover:bg-white hover:text-gray-800 transition-all">
@@ -25,9 +32,19 @@ const store = useClientStore();
       <button class="hover:bg-white hover:text-gray-800 transition-all">Login</button>
     </div>
     <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
-      <button class="hover:bg-white hover:text-gray-800 transition-all">Cart</button>
+      <button class="hover:bg-white hover:text-gray-800 transition-all" @click="toggleCartPopUp">Cart</button>
+      <div class="h-50 w-50" v-if="showCartPopUp">
+          <h1>Amount: {{ cartStore.data?.amount }}</h1>
+        <h2>Shipping: {{cartStore.data?.shipping}}</h2>
+        <div v-if="cartStore.data?.products">
+          <h2>{{cartStore.data.products[0]}}</h2>
+          <h2>{{cartStore.data.products.length - 1}}</h2>
+        </div>
+
+        <h2>Empty Cart</h2>
+      </div>
       <button class="hover:bg-white hover:text-gray-800 transition-all">
-        {{ store.data.name }}
+        {{ clientStore.data.name }}
       </button>
     </div>
   </header>

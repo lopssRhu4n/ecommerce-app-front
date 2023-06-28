@@ -3,8 +3,10 @@ import { useProductStore } from '@/stores/ProductStore';
 import { onMounted } from 'vue';
 import CardProductComponentVue from '@/components/CardProductComponent.vue';
 import { ProductService } from '@/http/services/ProductService';
+import { useCartStore } from '@/stores/CartStore';
 
 const productStore = useProductStore();
+const cartStore = useCartStore();
 
 const fetchProducts = async () => {
   const { data } = await ProductService.getProducts();
