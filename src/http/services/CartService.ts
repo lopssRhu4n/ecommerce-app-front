@@ -7,4 +7,8 @@ export const CartService = {
   addProductToCart(payload: IProductToCart) {
     return Client.post(resource + '/product', payload);
   },
+
+  getCart(id: number) {
+    return Client.get(resource + '/' + id);
+  },
 };

@@ -12,8 +12,14 @@ export const routes = [
         path: '/category/:id',
         component: () => import('@/pages/CategoryPage.vue'),
         name: 'Category',
-        props: true
-      }
+        props: true,
+      },
+      {
+        path: '/product/:id',
+        component: () => import('@/pages/ProductPage.vue'),
+        name: 'Product',
+        props: true,
+      },
     ],
   },
   {

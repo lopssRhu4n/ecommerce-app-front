@@ -3,8 +3,10 @@ import { onMounted, ref } from 'vue';
 import { CategoryService } from '../http/services/CategoryService';
 import CardProductComponent from '@/components/CardProductComponent.vue';
 import type { ICategory } from '@/interfaces/CategoryInterface';
+import { useTitle } from '@vueuse/core';
 
 const props = defineProps<{ id: number }>();
+const title = useTitle('', { titleTemplate: '%s | Ecommerce App' });
 
 const categoryData = ref<ICategory>();
 
@@ -13,6 +15,7 @@ const fetchCategory = async () => {
     const { data } = await CategoryService.getCategory(props.id);
 
     categoryData.value = data;
+    title.value = categoryData.value?.name;
   } catch (error) {
     console.log(error);
   }
