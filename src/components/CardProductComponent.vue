@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import type { IProduct } from '@/interfaces/ProductInterface';
 import { CartService } from '@/http/services/CartService';
 import { useClientStore } from '@/stores/ClientStore';
