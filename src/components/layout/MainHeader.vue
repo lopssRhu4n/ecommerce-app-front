@@ -30,8 +30,12 @@ onMounted(() => {
     </div>
     <div class="text-lg uppercase col-span-2 flex items-center gap-x-2 justify-center">
       <div>
-        <button @click="toggleCategoriesPopUp">Categories</button>
-        <div v-if="showCategoriesPopUp" class="absolute top-[110%] z-[2] shadow-lg">
+        <button data-testid="categories-toggle" @click="toggleCategoriesPopUp">Categories</button>
+        <div
+          v-if="showCategoriesPopUp"
+          data-testid="categories-preview"
+          class="absolute top-[110%] z-[2] shadow-lg"
+        >
           <router-link
             v-for="category in categoriesPreview"
             :key="category.id"
@@ -60,10 +64,18 @@ onMounted(() => {
       </button>
     </div>
     <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
-      <button class="hover:bg-white hover:text-gray-800 transition-all" @click="toggleCartPopUp">
+      <button
+        data-testid="cart-toggle"
+        class="hover:bg-white hover:text-gray-800 transition-all"
+        @click="toggleCartPopUp"
+      >
         Cart
       </button>
-      <div class="h-50 w-50 z-[1] absolute top-20 bg-black p-5" v-if="showCartPopUp">
+      <div
+        data-testid="cart-preview"
+        class="h-50 w-50 z-[1] absolute top-20 bg-black p-5"
+        v-if="showCartPopUp"
+      >
         <h1>Amount: {{ clientStore.data?.cart.amount }}</h1>
         <h2>Shipping: {{ clientStore.data?.cart.shipping }}</h2>
         <div v-if="clientStore.data?.cart.products">
