@@ -20,6 +20,16 @@ export const routes = [
         name: 'Product',
         props: true,
       },
+      {
+        path: '/bestsellers',
+        component: () => import('@/pages/BestSellersPage.vue'),
+        name: 'BestSellers',
+      },
+      {
+        path: '/discounts',
+        component: () => import('@/pages/DiscountsPage.vue'),
+        name: 'Discounts',
+      },
     ],
   },
   {

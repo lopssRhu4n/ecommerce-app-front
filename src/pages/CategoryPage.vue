@@ -5,7 +5,7 @@ import CardProductComponent from '@/components/CardProductComponent.vue';
 import type { ICategory } from '@/interfaces/CategoryInterface';
 import { useTitle } from '@vueuse/core';
 
-const props = defineProps<{ id: number }>();
+const props = defineProps<{ id: string }>();
 const title = useTitle('', { titleTemplate: '%s | Ecommerce App' });
 
 const categoryData = ref<ICategory>();
@@ -32,13 +32,11 @@ onMounted(() => {
       <h1 class="text-2xl font-bold">{{ categoryData?.name }}</h1>
     </div>
 
-    <div
-      class="col-span-1 h-[400px] bg-blue-300 w-2/5 mx-auto flex flex-col gap-y-5 justify-center items-center text-center"
+    <CardProductComponent
       v-for="product in categoryData?.products"
       :key="product.id"
-    >
-      <CardProductComponent :product="product" />
-    </div>
+      :product="product"
+    />
   </div>
 </template>
 

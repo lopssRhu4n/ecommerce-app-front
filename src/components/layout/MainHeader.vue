@@ -28,9 +28,17 @@ onMounted(() => {
     <div class="text-xl uppercase col-span-2 flex items-center justify-start">
       <router-link to="/">Logo</router-link>
     </div>
-    <div class="text-lg uppercase col-span-2 flex items-center gap-x-2 justify-center">
+    <div
+      class="text-lg uppercase col-span-2 flex items-center tracking-wide gap-x-4 justify-center"
+    >
       <div>
-        <button data-testid="categories-toggle" @click="toggleCategoriesPopUp">Categories</button>
+        <button
+          data-testid="categories-toggle"
+          class="transition-all p-2 hover:bg-white hover:text-black"
+          @click="toggleCategoriesPopUp"
+        >
+          CATEGORIES
+        </button>
         <div
           v-if="showCategoriesPopUp"
           data-testid="categories-preview"
@@ -48,20 +56,22 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
-      <span>|</span>
-      <p>Content</p>
-      <span>|</span>
-      <p>Content</p>
+      <div class="transition-all hover:bg-white hover:text-black p-2">
+        <router-link to="/bestsellers">Best Sellers</router-link>
+      </div>
+      <div class="transition-all hover:bg-white hover:text-black p-2">
+        <router-link to="/discounts">DISCOUNTS</router-link>
+      </div>
     </div>
     <div
       v-if="!clientStore.data"
       class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
     >
-      <button class="hover:bg-white hover:text-gray-800 transition-all">
-        <a href="/auth/register">Register</a>
+      <button class="hover:bg-white hover:text-gray-800 transition-all p-4">
+        <router-link to="/auth/register">Register</router-link>
       </button>
-      <button class="hover:bg-white hover:text-gray-800 transition-all">
-        <a href="/auth/login">Login</a>
+      <button class="hover:bg-white hover:text-gray-800 transition-all p-4">
+        <router-link to="/auth/login">Login</router-link>
       </button>
     </div>
     <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
