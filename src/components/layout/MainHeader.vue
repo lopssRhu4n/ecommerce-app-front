@@ -41,6 +41,7 @@ onMounted(() => {
             :key="category.id"
             class="block bg-white text-black"
             :to="`/category/${category.id}`"
+            :data-testid="'category-preview-' + category.id"
             @click="showCategoriesPopUp = false"
           >
             {{ category.name }}
