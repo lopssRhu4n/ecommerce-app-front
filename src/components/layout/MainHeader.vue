@@ -32,22 +32,18 @@ onMounted(() => {
       class="text-lg uppercase col-span-2 flex items-center tracking-wide gap-x-4 justify-center"
     >
       <div>
-        <button
-          data-testid="categories-toggle"
-          class="transition-all p-2 hover:bg-white hover:text-black"
-          @click="toggleCategoriesPopUp"
-        >
+        <button data-testid="categories-toggle" class="ui-link" @click="toggleCategoriesPopUp">
           CATEGORIES
         </button>
         <div
           v-if="showCategoriesPopUp"
           data-testid="categories-preview"
-          class="absolute top-[110%] z-[2] shadow-lg"
+          class="absolute bg-white left-[50%] translate-x-[-50%] top-[110%] z-[2] grid grid-cols-4"
         >
           <router-link
             v-for="category in categoriesPreview"
             :key="category.id"
-            class="block bg-white text-black"
+            class="block text-black py-2 px-4 transition-all text-center hover:bg-black hover:text-gray-200"
             :to="`/category/${category.id}`"
             :data-testid="'category-preview-' + category.id"
             @click="showCategoriesPopUp = false"
@@ -56,10 +52,10 @@ onMounted(() => {
           </router-link>
         </div>
       </div>
-      <div class="transition-all hover:bg-white hover:text-black p-2">
+      <div class="ui-link">
         <router-link to="/bestsellers">Best Sellers</router-link>
       </div>
-      <div class="transition-all hover:bg-white hover:text-black p-2">
+      <div class="ui-link">
         <router-link to="/discounts">DISCOUNTS</router-link>
       </div>
     </div>
@@ -67,10 +63,10 @@ onMounted(() => {
       v-if="!clientStore.data"
       class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
     >
-      <button class="hover:bg-white hover:text-gray-800 transition-all p-4">
+      <button class="ui-link">
         <router-link to="/auth/register">Register</router-link>
       </button>
-      <button class="hover:bg-white hover:text-gray-800 transition-all p-4">
+      <button class="ui-link">
         <router-link to="/auth/login">Login</router-link>
       </button>
     </div>
@@ -84,7 +80,7 @@ onMounted(() => {
       </button>
       <div
         data-testid="cart-preview"
-        class="h-50 w-50 z-[1] absolute top-20 bg-black p-5"
+        class="h-50 w-50 z-[1] absolute top-20 bg-black p-5 transition-all"
         v-if="showCartPopUp"
       >
         <h1>Amount: {{ clientStore.data?.cart.amount }}</h1>
@@ -106,5 +102,11 @@ onMounted(() => {
 </template>
 
 <style>
-/* Component CSS */
+.ui-link {
+  @apply transition-all rounded-sm p-2;
+}
+
+.ui-link:hover {
+  @apply bg-white text-gray-800;
+}
 </style>
