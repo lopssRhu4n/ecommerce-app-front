@@ -39,19 +39,29 @@ const Login = async () => {
 
 <template>
   <form
-    class="w-[600px] flex justify-center flex-col items-center h-[400px] bg-white rounded-md shadow-md"
+    class="w-[800px] relative flex justify-center flex-col items-center h-[500px] bg-white rounded-md shadow-md"
     @submit.prevent="Login"
   >
-    <div class="w-3/5 flex my-2 justify-between" v-for="(item, index) in LoginData" :key="index">
-      <label :for="index" class="text-black">{{ index }}</label>
+    <div class="w-1/2 absolute h-full bg-red-800 left-0"></div>
+    <div
+      class="w-3/5 flex my-2 justify-between z-10"
+      v-for="(_item, index) in LoginData"
+      :key="index"
+    >
+      <label :for="index" class="text-center text-black uppercase font-bold">{{ index }}</label>
       <input
         :id="index"
         :type="loginTypes[index]"
-        class="text-black w-3/5"
+        class="text-black p-1 outline-none flex w-3/5 pt-4 rounded-sm"
         v-model="LoginData[index]"
       />
     </div>
-    <button @click="Login" class="bg-black">ENVIAR</button>
+    <button
+      @click="Login"
+      class="p-4 z-10 border-black transition-all bg-black text-gray-200 mt-4 rounded-sm uppercase font-bold border hover:text-black hover:bg-white hover:border-black"
+    >
+      ENVIAR
+    </button>
   </form>
 </template>
 

@@ -26,7 +26,7 @@ onMounted(() => {
 <template>
   <header class="w-full relative grid grid-cols-6 justify-between px-5 h-[100px] bg-black">
     <div class="text-xl uppercase col-span-2 flex items-center justify-start">
-      <router-link to="/">Logo</router-link>
+      <router-link to="/"><i class="fas fa-cart-shopping"></i></router-link>
     </div>
     <div
       class="text-lg uppercase col-span-2 flex items-center tracking-wide gap-x-4 justify-center"
@@ -71,18 +71,19 @@ onMounted(() => {
       </button>
     </div>
     <div v-else class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4">
-      <button
-        data-testid="cart-toggle"
-        class="hover:bg-white hover:text-gray-800 transition-all"
-        @click="toggleCartPopUp"
-      >
-        Cart
-      </button>
+      <button data-testid="cart-toggle" class="ui-link" @click="toggleCartPopUp">Cart</button>
       <div
         data-testid="cart-preview"
         class="h-50 w-50 z-[1] absolute top-20 bg-black p-5 transition-all"
         v-if="showCartPopUp"
       >
+        <div class="relative">
+          <button @click="showCartPopUp = false">
+            <i
+              class="fas top-0 fa-close absolute right-0 transition-all p-2 hover:bg-white hover:text-black rounded-xl"
+            ></i>
+          </button>
+        </div>
         <h1>Amount: {{ clientStore.data?.cart.amount }}</h1>
         <h2>Shipping: {{ clientStore.data?.cart.shipping }}</h2>
         <div v-if="clientStore.data?.cart.products">
@@ -94,7 +95,7 @@ onMounted(() => {
 
         <h2 v-else>Empty Cart</h2>
       </div>
-      <button class="hover:bg-white hover:text-gray-800 transition-all">
+      <button class="ui-link">
         {{ clientStore.data.name }}
       </button>
     </div>
@@ -103,7 +104,7 @@ onMounted(() => {
 
 <style>
 .ui-link {
-  @apply transition-all rounded-sm p-2;
+  @apply transition-all rounded-sm p-2 uppercase;
 }
 
 .ui-link:hover {

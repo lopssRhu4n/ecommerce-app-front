@@ -26,22 +26,35 @@ const prevImage = () => {
 </script>
 
 <template>
-  <section class="p-6 flex justify-center items-center">
+  <section class="flex p-6 justify-center items-center">
     <div
-      class="h-[90vh] p-10 w-[90%] transition ease-in-out rounded-md duration-1000 relative"
+      class="h-[90vh] w-[90%] transition flex justify-center ease-in-out rounded-md duration-1000 relative"
       :style="'background-color: ' + images[slideIndex] + ';'"
     >
-      <div @click="prevImage" class="absolute top-1/2 left-10 cursor-pointer">
+      <div
+        @click="prevImage"
+        class="absolute h-full top-0 flex items-center justify-center left-0 w-20 cursor-pointer transition-all arrow hover:bg-gradient-to-r hover:from-black hover:to-transparent"
+      >
         <i class="fas fa-arrow-left"></i>
       </div>
 
-      <div @click="nextImage" class="absolute top-1/2 right-10 cursor-pointer">
+      <div
+        @click="nextImage"
+        class="absolute h-full top-0 flex items-center justify-center right-0 w-20 cursor-pointer transition-all arrow hover:bg-gradient-to-l hover:from-black hover:to-transparent"
+      >
         <i class="fas fa-arrow-right"></i>
+      </div>
+
+      <div class="h-4 w-20 flex justify-between absolute bottom-10">
+        <div
+          v-for="(_image, index) in images"
+          :key="index"
+          class="w-4 h-4 rounded-full border border-black transition-all"
+          :style="slideIndex == index ? 'background-color: white' : ''"
+        ></div>
       </div>
     </div>
   </section>
 </template>
 
-<style>
-/* Component CSS */
-</style>
+<style></style>

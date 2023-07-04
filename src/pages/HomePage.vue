@@ -21,7 +21,7 @@ onMounted(() => {
   <div class="w-full h-screen text-4xl items-center text-center text-red-800">
     <ProductSliderVue />
   </div>
-  <div class="w-3/4 py-4 grid gap-5 grid-cols-2 text-yellow-800">
+  <div class="w-3/4 py-4 grid gap-12 grid-cols-2 text-yellow-800">
     <CardProductComponentVue
       v-for="(product, index) in productStore.data"
       :key="index"
