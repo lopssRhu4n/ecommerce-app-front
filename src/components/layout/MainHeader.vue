@@ -74,7 +74,7 @@ onMounted(() => {
       <button data-testid="cart-toggle" class="ui-link" @click="toggleCartPopUp">Cart</button>
       <div
         data-testid="cart-preview"
-        class="h-50 w-50 z-[1] absolute top-20 bg-black p-5 transition-all"
+        class="h-50 w-50 z-[1] absolute flex gap-y-2 flex-col top-24 bg-black p-5 transition-all"
         v-if="showCartPopUp"
       >
         <div class="relative">
@@ -94,6 +94,12 @@ onMounted(() => {
         </div>
 
         <h2 v-else>Empty Cart</h2>
+        <router-link
+          class="ui-link w-1/2 self-center text-center"
+          @click="showCartPopUp = false"
+          :to="'Cart'"
+          >Cart Page</router-link
+        >
       </div>
       <button class="ui-link">
         {{ clientStore.data.name }}

@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
 import { ref } from 'vue';
 import type { ILoginData } from '@/interfaces/Auth/LoginDataInterface';
 import { authService } from '@/http/services/AuthService';
 import { useClientStore } from '@/stores/ClientStore';
-import { useCartStore } from '@/stores/CartStore';
 import router from '@/router';
 // Component Script
 
@@ -18,6 +16,12 @@ const loginTypes = {
   password: 'password',
   email: 'email',
   confirmPassword: 'password',
+};
+
+const loginAutocomplete = {
+  password: 'new-password',
+  email: 'email',
+  confirmPassword: 'new-password',
 };
 
 const LoginData = ref<ILoginData>(loginBody);
@@ -50,6 +54,7 @@ const Login = async () => {
     >
       <label :for="index" class="text-center text-black uppercase font-bold">{{ index }}</label>
       <input
+        :autocomplete="loginAutocomplete[index]"
         :id="index"
         :type="loginTypes[index]"
         class="text-black p-1 outline-none flex w-3/5 pt-4 rounded-sm"

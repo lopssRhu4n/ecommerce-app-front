@@ -30,6 +30,10 @@ export const routes = [
         component: () => import('@/pages/DiscountsPage.vue'),
         name: 'Discounts',
       },
+      {
+        path: '/cart',
+        component: () => import('@/pages/CartPage.vue')
+      }
     ],
   },
   {
