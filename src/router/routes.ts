@@ -32,8 +32,10 @@ export const routes = [
       },
       {
         path: '/cart',
-        component: () => import('@/pages/CartPage.vue')
-      }
+        component: () => import('@/pages/CartPage.vue'),
+        name: 'Cart',
+        meta: { requiresAuth: true },
+      },
     ],
   },
   {

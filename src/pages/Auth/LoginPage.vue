@@ -36,6 +36,7 @@ const Login = async () => {
   const { data } = await authService.login(LoginData.value);
 
   clientStore.data = data.client;
+  localStorage.setItem('apiToken', data.auth_token);
 
   router.push('/');
 };
