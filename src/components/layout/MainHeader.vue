@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useClientStore } from '@/stores/ClientStore';
+import { useUserStore } from '@/stores/UserStore';
 import type { ICategoryPreview } from '@/interfaces/CategoryPreviewInterface';
 import { onMounted, ref } from 'vue';
 import { CategoryService } from '@/http/services/CategoryService';
 
-const clientStore = useClientStore();
+const userStore = useUserStore();
 const showCartPopUp = ref(false);
 const showCategoriesPopUp = ref(false);
 
@@ -60,7 +60,7 @@ onMounted(() => {
       </div>
     </div>
     <div
-      v-if="!clientStore.data"
+      v-if="!userStore.data"
       class="text-lg uppercase col-span-2 flex items-center justify-end gap-x-4"
     >
       <button class="ui-link">
@@ -84,12 +84,12 @@ onMounted(() => {
             ></i>
           </button>
         </div>
-        <h1>Amount: {{ clientStore.data?.cart.amount }}</h1>
-        <h2>Shipping: {{ clientStore.data?.cart.shipping }}</h2>
-        <div v-if="clientStore.data?.cart.products">
-          <h2>{{ clientStore.data.cart.products[0].name }}</h2>
-          <h2 v-if="clientStore.data.cart.products.length > 1">
-            {{ clientStore.data.cart.products.length - 1 }} more...
+        <h1>Amount: {{ userStore.data?.client.cart.amount }}</h1>
+        <h2>Shipping: {{ userStore.data?.client.cart.shipping }}</h2>
+        <div v-if="userStore.data?.client.cart.products">
+          <h2>{{ userStore.data.client.cart.products[0].name }}</h2>
+          <h2 v-if="userStore.data.client.cart.products.length > 1">
+            {{ userStore.data.client.cart.products.length - 1 }} more...
           </h2>
         </div>
 
@@ -102,7 +102,7 @@ onMounted(() => {
         >
       </div>
       <button class="ui-link">
-        {{ clientStore.data.name }}
+        {{ userStore.data.name }}
       </button>
     </div>
   </header>

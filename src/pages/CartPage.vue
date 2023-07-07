@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useClientStore } from '@/stores/ClientStore';
+import { useUserStore } from '@/stores/UserStore';
 import { onMounted, reactive } from 'vue';
 
-const clientStore = useClientStore();
+const userStore = useUserStore();
 </script>
 
 <template>
   <div class="w-full grid grid-cols-8">
     <div
-      v-if="clientStore.data?.cart.products"
+      v-if="userStore.data?.client.cart.products"
       class="col-span-5 flex gap-x-2 justify-center flex-col h-full bg-white"
     >
       <div
-        v-for="product in clientStore.data.cart.products"
+        v-for="product in userStore.data.client.cart.products"
         class="flex flex-row"
         :key="product.id"
       >

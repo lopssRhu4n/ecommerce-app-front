@@ -1,11 +1,13 @@
 import type { ICart } from './CartInterface';
 
-export interface IClient {
+export interface IUser {
   id: number;
   name: string;
-  birthdate: string;
-  phone: string;
-  cpf: number;
   email: string;
-  cart: ICart;
+  client: {
+    birthdate: string;
+    cart: ICart;
+    cpf: number;
+    phone: string;
+  };
 }

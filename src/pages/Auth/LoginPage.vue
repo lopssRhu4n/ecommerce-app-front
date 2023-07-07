@@ -2,8 +2,9 @@
 import { ref } from 'vue';
 import type { ILoginData } from '@/interfaces/Auth/LoginDataInterface';
 import { authService } from '@/http/services/AuthService';
-import { useClientStore } from '@/stores/ClientStore';
+import { useUserStore } from '@/stores/UserStore';
 import router from '@/router';
+import { useAuthStore } from '@/stores/AuthStore';
 // Component Script
 
 const loginBody = {
@@ -31,12 +32,14 @@ const Login = async () => {
     return "Confirmation password doesn't match!";
   }
 
-  const clientStore = useClientStore();
+  const userStore = useUserStore();
+  const authStore = useAuthStore();
 
   const { data } = await authService.login(LoginData.value);
 
-  clientStore.data = data.client;
+  userStore.data = data.data;
   localStorage.setItem('apiToken', data.auth_token);
+  authStore.apiToken = data.auth_token;
 
   router.push('/');
 };

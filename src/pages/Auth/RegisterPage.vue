@@ -2,10 +2,10 @@
 import { ref } from 'vue';
 import type { IRegisterData } from '@/interfaces/Auth/RegisterDataInterface';
 import { authService } from '@/http/services/AuthService';
-import { useClientStore } from '@/stores/ClientStore';
+import { useUserStore } from '@/stores/UserStore';
 import router from '@/router';
 
-const clientStore = useClientStore();
+const userStore = useUserStore();
 
 const register = ref<IRegisterData>({
   name: '',
@@ -28,7 +28,7 @@ const registerInputsTypes = {
 const sendRegister = async () => {
   try {
     const { data } = await authService.register(register.value);
-    clientStore.data = data.client;
+    userStore.data = data.data;
     router.push('/');
   } catch (error: any) {
     console.log(error.response.data);
