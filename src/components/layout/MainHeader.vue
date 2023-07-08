@@ -16,9 +16,9 @@ const fetchApiData = async () => {
 
   categoriesPreview.value = data;
 
-  if (useAuthStore().apiToken) {
-    userStore.data = await authService.retrieveUserData();
-  }
+  // if (useAuthStore().apiToken) {
+  //   userStore.data = await authService.retrieveUserData();
+  // }
 };
 
 const toggleCartPopUp = () => (showCartPopUp.value = !showCartPopUp.value);
@@ -95,7 +95,7 @@ onMounted(async () => {
         </div>
         <h1>Amount: {{ userStore.data?.client.cart.amount }}</h1>
         <h2>Shipping: {{ userStore.data?.client.cart.shipping }}</h2>
-        <div v-if="userStore.data?.client.cart.products">
+        <div v-if="userStore.data?.client.cart.products && userStore.data?.client.cart.products[0]">
           <h2>{{ userStore.data.client.cart.products[0].name }}</h2>
           <h2 v-if="userStore.data.client.cart.products.length > 1">
             {{ userStore.data.client.cart.products.length - 1 }} more...
