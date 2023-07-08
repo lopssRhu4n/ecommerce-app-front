@@ -3,23 +3,32 @@ import { useUserStore } from '@/stores/UserStore';
 import type { ICategoryPreview } from '@/interfaces/CategoryPreviewInterface';
 import { onMounted, ref } from 'vue';
 import { CategoryService } from '@/http/services/CategoryService';
+import { authService } from '@/http/services/AuthService';
+import { useAuthStore } from '@/stores/AuthStore';
 
 const userStore = useUserStore();
 const showCartPopUp = ref(false);
 const showCategoriesPopUp = ref(false);
 
 const categoriesPreview = ref<ICategoryPreview[]>();
-const fetchCategoriesPreview = async () => {
+const fetchApiData = async () => {
   const { data } = await CategoryService.getAllCategoriesPreview();
 
   categoriesPreview.value = data;
+
+  if (useAuthStore().apiToken) {
+    userStore.data = await authService.retrieveUserData();
+  }
 };
 
 const toggleCartPopUp = () => (showCartPopUp.value = !showCartPopUp.value);
 const toggleCategoriesPopUp = () => (showCategoriesPopUp.value = !showCategoriesPopUp.value);
 
-onMounted(() => {
-  fetchCategoriesPreview();
+onMounted(async () => {
+  fetchApiData();
+
+  // const { data } = await authService.retrieveUserData();
+  // userStore.data = data;
 });
 </script>
 

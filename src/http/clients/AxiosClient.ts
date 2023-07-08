@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { useAuthStore } from '@/stores/AuthStore';
 
-const authStore = useAuthStore();
-
 const baseURL = 'http://localhost/api';
 
 const axiosInstance = axios.create({
@@ -12,9 +10,13 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    authStore.checkIsLogged();
-    const token = authStore.apiToken;
-    if (token) config.headers = { ...config.headers, Authentication: 'Bearer ' + token };
+    const token = localStorage.getItem('apiToken');
+    const authStore = useAuthStore();
+    if (token) {
+      config.headers = { ...config.headers, Authentication: `Bearer ${token}` };
+      authStore.changeIsLogged(true);
+      authStore.apiToken = token;
+    }
     return config;
   },
   (error) => {

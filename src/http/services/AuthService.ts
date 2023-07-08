@@ -12,4 +12,8 @@ export const authService = {
   login(payload: ILoginData) {
     return Client.post('/login', payload);
   },
+
+  retrieveUserData() {
+    return Client.get('/user');
+  },
 };
